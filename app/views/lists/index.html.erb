@@ -1,6 +1,7 @@
+<%# NAVBAR %>
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid d-flex justify-content-between">
-    <%= link_to "#", class: "navbar-brand" do %>
+    <%= link_to lists_path, class: "navbar-brand" do %>
       <%= image_tag "video-player" %>
     <% end %>
 
@@ -11,58 +12,38 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
           <li class="nav-item active fs-3">
-            <%= link_to "My lists", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item active fs-3">
-            <%= link_to "New list", "#", class: "nav-link" %>
+            <%= link_to "My lists", lists_path, class: "nav-link" %>
           </li>
       </ul>
     </div>
   </div>
 </div>
 
+<%# BANNER %>
 <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media.istockphoto.com/id/1294308946/pt/foto/hand-is-holding-black-clapper-board-or-movie-slate-it-is-used-in-video-production-and-movies.jpg?s=612x612&w=0&k=20&c=cCo8Dg4CpWtwe0UUNXxoz6ncVJhrB9uNvLQ5phhTHoE=)">
-  <div class="text fs-1"><strong>WATCH LIST</strong></div>
+  <div class="row">
+    <div class="col-12">
+      <div class="text-center fs-1"><strong>WATCH LIST</strong></div>
+    </div>
+    <div class="col-12 text-center">
+      <%= link_to "Add a new List", new_list_path, class: "btn btn-primary btn-lg btn btn-primary" %>
+    </div>
+  </div>
 </div>
 
+<%# LISTS %>
 <div class="container mt-3 mb-3">
   <div class="row">
-
-    <div class="col-4 mt-1 mb-1">
-      <a class="card-link" href="<%= "#" %>"><div class="card">
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media.istockphoto.com/id/1281466533/photo/female-mural-artist-at-work.jpg?b=1&s=170667a&w=0&k=20&c=OzDzUFNEVwJyQ1s6AN9jG9TLmTxXnyGesWJ0gmzWcD0=)">
-           <div class="card-text">Documentary</div>
+    <% @lists.each do |list| %>
+      <div class="col-4 mt-1 mb-1">
+        <%= link_to list_path(list), class: "card-link" do %>
+          <div class="card">
+            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.image %>)">
+            <div class="card-text"><%= list.name %></div>
+            </div>
           </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-4 mt-1 mb-1">
-      <a class="card-link" href="<%= "#" %>"><div class="card">
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media.istockphoto.com/id/680810342/photo/dog-watching-tv-on-the-couch.jpg?b=1&s=170667a&w=0&k=20&c=I-AzETuiLL9m8uk5CRPvamVFZBSWYZnbyoCBvUpCECU=)">
-           <div class="card-text">Comedy</div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-4 mt-1 mb-1">
-      <a class="card-link" href="<%= "#" %>"><div class="card">
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media.istockphoto.com/id/1141192830/photo/close-up-photo-beautiful-amazing-she-her-lady-two-buns-watch-tv-show-hold-popcorn-bucket-eyes.jpg?b=1&s=170667a&w=0&k=20&c=o51QOr-tHB9eLMcPUNzB5KQtjgZ0D8td__goOYnJwsQ=)">
-           <div class="card-text">Drama</div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-4 mt-1 mb-1">
-      <a class="card-link" href="<%= "#" %>"><div class="card">
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media.istockphoto.com/id/1352294593/photo/tactical-exercise-training-an-armed-bodyguard-security-team-protects-celebrity.jpg?b=1&s=170667a&w=0&k=20&c=bCS18QdaNthr8lu4WKLiP2eUvL7i2EOfM07MS92MUWM=)">
-           <div class="card-text">Action</div>
-          </div>
-        </div>
-      </a>
-    </div>
-
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
